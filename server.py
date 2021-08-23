@@ -27,11 +27,11 @@ now = dt.now()
 # models
 class User(db.Model):
     __tablename__ = 'user'
-    id = db.Columns(db.Integer, primary_key=True)
-    name = db.Columns(db.String(50))
-    email = db.Columns(db.String(50))
-    address = db.Columns(db.String(200))
-    phone = db.Columns(db.String(50))
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50))
+    email = db.Column(db.String(50))
+    address = db.Column(db.String(200))
+    phone = db.Column(db.String(50))
     posts = db.relationship("BlogPost", cascade='all, delete')
 
 class BlogPost(db.Model):
@@ -47,10 +47,10 @@ class BlogPost(db.Model):
 def create_user():
     data = request.get_json()
     new_user = User(
-        name = data['name'],
-        email = data['email'],
-        address = data['address'],
-        phone = data['phone'],
+        name = data["name"],
+        email = data["email"],
+        address = data["address"],
+        phone = data["phone"],
     )
     db.session.add(new_user)
     db.session.commit()
@@ -65,11 +65,11 @@ def get_all_users_desc():
     for user in users:
         all_users_ll.insert_beginning(
             {
-                'id': user.id,
-                'name': user.name,
-                'email': user.email,
-                'address': user.address,
-                'phone': user.phone,
+                "id": user.id,
+                "name": user.name,
+                "email": user.email,
+                "address": user.address,
+                "phone": user.phone,
             }
         )
 
@@ -83,11 +83,11 @@ def get_all_users_asc():
     for user in users:
         all_users_ll.insert_at_end(
             {
-                'id': user.id,
-                'name': user.name,
-                'email': user.email,
-                'address': user.address,
-                'phone': user.phone,
+                "id": user.id,
+                "name": user.name,
+                "email": user.email,
+                "address": user.address,
+                "phone": user.phone,
             }
         )
 
@@ -103,11 +103,11 @@ def get_one_user(user_id):
     for user in users:
         all_users_ll.insert_beginning(
             {
-                'id': user.id,
-                'name': user.name,
-                'email': user.email,
-                'address': user.address,
-                'phone': user.phone,
+                "id": user.id,
+                "name": user.name,
+                "email": user.email,
+                "address": user.address,
+                "phone": user.phone,
             }
         )
     user = all_users_ll.get_user_by_id(user_id)
